@@ -13,23 +13,18 @@
   <body class=" min-100">
     <nav class="navbar navbar-light bg-light py-5">
       <a class="navbar-brand" href="#">Sample HR Application</a>
-       <form class="form-inline">
-     <a href="../index.html" class="btn btn-primary my-2 my-sm-0">Sign out</a>
-  </form>
+      <form class="form-inline">
+        <a href="../index.html" class="btn btn-primary my-2 my-sm-0">Sign out</a>
+      </form>
     </nav>
     <div class="container mt-5 pt-5">
       <div class="row  h-100">
-        <div
-          class="col-sm-9 col-md-7 col-lg-5 align-self-center align-middle mx-auto my-auto"
-        >
+        <div class="col-sm-9 col-md-7 col-lg-5 align-self-center align-middle mx-auto my-auto">
           <div class="card card-block card-signin my-5">
             <div class="card-body">
-
               <h5 class="card-title text-center">upload resume</h5>
-              <form class="form-signin text-center">
-                <label class="file-upload btn btn-primary">
-                  Browse for file ... <input type="file" />
-                </label>
+              <form id="uploadform" class="form-signin text-center">
+                <label class="file-upload btn btn-primary"> Browse for file ... <input id="file_input" type="file" name="uploadinp" /> </label>
                 <hr class="my-4" />
                 <div id="progressBar" class="default" style="display: none"><div style="min-width: 50px;"></div></div>
                 <h5 id="success" class="text-success" style="display: none">File has been uploaded successfully</h5>
@@ -45,28 +40,4 @@
   <script src="../assets/bootstrap.bundle.min.js"></script>
   <script src="../assets/file-upload.js"></script>
   <script type="text/javascript" src="../assets/progressbar.js"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-      $(".file-upload").file_upload();
-      $("input[type=file]").change(function() {
-        // select the form and submit
-        var i = 30;
-
-        setInterval(function() {
-          if (i <= 100) {
-            progressBar(i, $("#progressBar"));
-              $("#progressBar").show();
-            i = i +10;
-          }
-          else{
-             $("#progressBar").hide();
-              $("#success").show();
-          }
-        }, 500);
-
-      });
-    });
-  </script>
 </html>

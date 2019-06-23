@@ -1,9 +1,18 @@
 const express = require("express");
 const app = express();
+
 const bodyParser = require("body-parser");
 const multer = require("multer");
-
-const upload = multer({ dest: "public/uploads/" });
+const upload_path = __dirname + "/public/uploads/";
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, upload_path);
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 const port = 3000;
 

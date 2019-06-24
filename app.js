@@ -7,11 +7,6 @@ const fs = require('fs');
 const upload_path = __dirname + "/public/uploads/";
 
 
-if (!fs.existsSync(upload_path)){
-    fs.mkdirSync(upload_path);
-}
-
-
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, upload_path);
@@ -31,10 +26,10 @@ app.use(express.static("public"));
 app.post("/uploadfile", upload.single("uploadinp"), (req, res, next) => {
   const file = req.file;
   console.log(file);
-   //fs.copyFileSync(upload_path+file.filename,upload_path+file.filename+"2")
-  fs.copyFileSync(upload_path+file.filename,'/hrapp3')
-  //fs.copyFileSync(upload_path+file.filename,'/hrapp2/')
-  //fs.copyFileSync(upload_path+file.filename,'/hrapp/')
+  const src = upload_path+file.filename
+  const dst = file.filename
+  fs.copyFileSync(src,'/hrapp2/'+dst)
+  fs.copyFileSync(src,'/hrapp/'+dst)
   res.sendStatus(200);
 });
 

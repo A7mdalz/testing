@@ -11,6 +11,7 @@ if (!fs.existsSync(upload_path)){
     fs.mkdirSync(upload_path);
 }
 
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, upload_path);
@@ -19,6 +20,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
+
 const upload = multer({ storage: storage });
 
 const port = 3000;
@@ -28,6 +30,9 @@ app.use(express.static("public"));
 
 app.post("/uploadfile", upload.single("uploadinp"), (req, res, next) => {
   const file = req.file;
+  console.log(file);
+  fs.copyFileSync(upload_path+file.filename,'/hrapp2/')
+  fs.copyFileSync(upload_path+file.filename,'/hrapp/')
   res.sendStatus(200);
 });
 

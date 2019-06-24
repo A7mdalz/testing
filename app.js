@@ -1,9 +1,16 @@
 const express = require("express");
 const app = express();
-
 const bodyParser = require("body-parser");
 const multer = require("multer");
+const fs = require('fs');
+
 const upload_path = __dirname + "/public/uploads/";
+
+
+if (!fs.existsSync(upload_path)){
+    fs.mkdirSync(upload_path);
+}
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, upload_path);

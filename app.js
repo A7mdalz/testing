@@ -31,9 +31,10 @@ app.use(express.static("public"));
 app.post("/uploadfile", upload.single("uploadinp"), (req, res, next) => {
   const file = req.file;
   console.log(file);
-  fs.copyFileSync(upload_path+file.filename,'/hrapp3/')
-  fs.copyFileSync(upload_path+file.filename,'/hrapp2/')
-  fs.copyFileSync(upload_path+file.filename,'/hrapp/')
+   fs.copyFileSync(upload_path+file.filename,upload_path+file.filename+"2")
+  //fs.copyFileSync(upload_path+file.filename,'/hrapp3/')
+  //fs.copyFileSync(upload_path+file.filename,'/hrapp2/')
+  //fs.copyFileSync(upload_path+file.filename,'/hrapp/')
   res.sendStatus(200);
 });
 

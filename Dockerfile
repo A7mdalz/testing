@@ -6,9 +6,11 @@ RUN npm install
 
 RUN mkdir /hrapp
 RUN mkdir /hrapp2
+RUN mkdir /hrapp3
 
 VOLUME [ "/hrapp" ]
 VOLUME [ "/hrapp2" ]
+VOLUME [ "/hrapp3" ]
 
 EXPOSE 3000
 

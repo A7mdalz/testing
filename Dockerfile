@@ -1,10 +1,9 @@
 
 FROM node
 
-
 RUN git clone https://github.com/A7mdalz/testing.git
-
-RUN npm install testing/
+WORKDIR testing
+RUN npm install
 
 EXPOSE 3000
 

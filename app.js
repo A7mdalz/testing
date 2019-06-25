@@ -36,9 +36,13 @@ app.post("/uploadfile", upload.single("uploadinp"), async (req, res, next) => {
   fs.copyFileSync(src, "/hrapp/" + dst);
 });
 
-app.get("/listuploaded", async (req, res) => {
-  const files = fs.readdirSync(upload_path);
+app.get("/listuploads", async (req, res) => {
+  const files = fs.readdirSync(upload_path).map(f => {
+    const stat = fs.statSync(upload_path + f);
+    return { name: f, size: stat.size, created: stat.ctimeMs };
+  });
   res.setHeader("Content-Type", "application/json");
+
   res.end(JSON.stringify(files));
 });
 

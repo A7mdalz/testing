@@ -28,7 +28,6 @@ app.post("/uploadfile", upload.single("uploadinp"), async (req, res, next) => {
   res.sendStatus(200);
 
   const file = req.file;
-  console.log(file);
   const src = upload_path + file.filename;
   const dst = file.filename;
   fs.copyFileSync(src, "/hrapp2/" + dst);

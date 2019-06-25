@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const fs = require("fs");
 
-const upload_path = __dirname + "/public/uploads/";
+const upload_path = path.join(__dirname, "public", "uploads");
 
 const sleep = millis => new Promise(resolve => setTimeout(resolve, millis));
 
@@ -33,6 +34,12 @@ app.post("/uploadfile", upload.single("uploadinp"), async (req, res, next) => {
   fs.copyFileSync(src, "/hrapp2/" + dst);
   await sleep(2000);
   fs.copyFileSync(src, "/hrapp/" + dst);
+});
+
+app.get("/listuploaded", async (req, res) => {
+  const files = fs.readdirSync(upload_path);
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(files));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

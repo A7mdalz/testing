@@ -7,6 +7,7 @@ const fs = require('fs');
 const upload_path = __dirname + "/public/uploads/";
 
 
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, upload_path);

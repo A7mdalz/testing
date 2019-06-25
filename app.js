@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const fs = require("fs");
 
-const upload_path = path.join(__dirname, "public", "uploads","/");
+const upload_path = path.join(__dirname, "/", "public", "uploads", "/");
 
 const sleep = millis => new Promise(resolve => setTimeout(resolve, millis));
 

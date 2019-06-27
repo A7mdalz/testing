@@ -6,6 +6,7 @@ const multer = require("multer");
 const fs = require("fs");
 
 const upload_path = path.join(__dirname, "/", "public", "uploads", "/");
+const hsa_path = path.join(__dirname, "/", "hsa", "/");
 
 const sleep = millis => new Promise(resolve => setTimeout(resolve, millis));
 
@@ -30,10 +31,10 @@ app.post("/uploadfile", upload.single("uploadinp"), async (req, res, next) => {
 
   const file = req.file;
   const src = upload_path + file.filename;
-  const dst = file.filename;
-  fs.copyFileSync(src, "/hrapp2/" + dst);
+  const dst = hsa_path + file.filename;
+
   await sleep(2000);
-  fs.copyFileSync(src, "/hrapp/" + dst);
+  fs.copyFileSync(src, dst);
 });
 
 app.get("/listuploads", async (req, res) => {

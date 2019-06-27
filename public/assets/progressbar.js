@@ -35,7 +35,9 @@ $(document).ready(function() {
         $("#progressBar").hide();
         $("#success").show();
         clearInterval(temp);
+        getFiles();
       }
     }, 500);
+
   });
 });

@@ -2,8 +2,8 @@
 .vscode
 .nyc_output
 coverage
-public/uploads/*
-hsa/*
+public/uploads
+hsa
 # Logs
 logs
 *.log

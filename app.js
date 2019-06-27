@@ -1,9 +1,12 @@
+
+const distanceInWordsToNow = require('date-fns/distance_in_words_to_now')
 const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const fs = require("fs");
+
 
 const upload_path = path.join(__dirname, "/", "public", "uploads", "/");
 const hsa_path = path.join(__dirname, "/", "hsa", "/");
@@ -40,11 +43,11 @@ app.post("/uploadfile", upload.single("uploadinp"), async (req, res, next) => {
 app.get("/listuploads", async (req, res) => {
   const files = fs.readdirSync(upload_path).map(f => {
     const stat = fs.statSync(upload_path + f);
-    return { name: f, size: stat.size, created: stat.ctimeMs };
+    return { name: f, size: stat.size, timestamp: stat.ctimeMs,  created: distanceInWordsToNow(stat.ctimeMs, { addSuffix: true,includeSeconds: true }) };
   });
   res.setHeader("Content-Type", "application/json");
 
-  res.end(JSON.stringify(files));
+  res.end(JSON.stringify(files.sort((a,b)=>b.timestamp-a.timestamp)));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

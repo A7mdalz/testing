@@ -33,6 +33,7 @@
                 <div style="min-width: 50px;"></div>
               </div>
               <h5 id="success" class="text-success" style="display: none">File has been uploaded successfully</h5>
+              <h5 id="hasError" class="text-danger" style="display: none">Error in uploading file</h5>
             </form>
           </div>
         </div>
@@ -75,13 +76,11 @@
       url: "../listuploads",
       dataType: "json",
       success: function (data) {
-        console.log(data);
         if(data.length > 0){
           $("#UploadedFiles").show();
             $("#filesList").empty();
         }
         data.forEach(function (entry) {
-          console.log(JSON.stringify(entry));
 
             $("#filesList").append(`<li class="list-group-item"> <b>File Name: </b>` + entry.name +
               '<br><b>File Size: </b>'+ bytesToSize(entry.size) +

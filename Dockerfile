@@ -6,4 +6,7 @@ RUN npm install
 
 EXPOSE 3000
 
+RUN mkdir -p /testing/public/uploads
+RUN mkdir -p /testing/hsa
+
 CMD ["node", "app.js"]
